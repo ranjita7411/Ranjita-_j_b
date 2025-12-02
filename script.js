@@ -1,12 +1,19 @@
-$(document).ready(function () {
-    $("#regForm").submit(function () {
+$(document).ready(function() {
 
-        if ($("#phone").val().length != 10) {
-            alert("Phone number must be 10 digits");
-            return false;
+    $("#regForm").submit(function(event) {
+
+        let phone = $("#phone").val();
+
+        // Validate phone number (only digits & 10–15 characters)
+        if (!/^[0-9]{10,15}$/.test(phone)) {
+            alert("Phone number must contain 10-15 digits only.");
+            event.preventDefault();
         }
 
-        alert("Form submitted successfully!");
-        return true;
+        if ($("#gender").val() === "") {
+            alert("Please select a gender.");
+            event.preventDefault();
+        }
+
     });
 });
